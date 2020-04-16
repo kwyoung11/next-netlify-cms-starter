@@ -1,12 +1,11 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet as StyledComponentSheets } from 'styled-components';
-import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/styles';
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang={this.props.locale}>
+      <Html lang='en'>
         <Head />
         <body>
           <Main />
@@ -42,14 +41,13 @@ MyDocument.getInitialProps = async (ctx) => {
 
   // Render app and page and get the context of the page with collected side effects.
   const styledComponentSheet = new StyledComponentSheets();
-  const materialUiSheets = new MaterialUiServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
   try {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) =>
-          styledComponentSheet.collectStyles(materialUiSheets.collect(<App {...props} />)),
+          styledComponentSheet.collectStyles(<App {...props} />),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
@@ -57,7 +55,6 @@ MyDocument.getInitialProps = async (ctx) => {
       ...initialProps,
       styles: [
         ...React.Children.toArray(initialProps.styles),
-        materialUiSheets.getStyleElement(),
         styledComponentSheet.getStyleElement(),
       ],
     };

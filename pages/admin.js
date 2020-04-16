@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 import Head from 'next/head';
-import { BlogPreviewTemplate } from '../../src/components/BlogPost/BlogPreviewTemplate';
+
 const CMS = dynamic(
   () =>
     import('netlify-cms-app').then((cms) => {
       cms.init();
-      cms.registerPreviewTemplate('recipes', BlogPreviewTemplate);
+      // cms.registerPreviewTemplate("<input collection here>", withStyled(YourComponent));
       cms.registerEditorComponent({
         id: 'youtube',
         label: 'Youtube',
@@ -32,7 +32,7 @@ const CMS = dynamic(
   { ssr: false },
 );
 
-const Index = () => {
+const Admin = () => {
   return (
     <>
       <Head>
@@ -43,4 +43,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Admin;
