@@ -1,0 +1,8 @@
+dist/
+bin/
+coverage/
+out/
+content/
+.next/
+public/
+.cache/
