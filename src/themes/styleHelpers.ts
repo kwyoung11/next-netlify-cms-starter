@@ -38,7 +38,7 @@ export const responsiveMargin = css`
 `;
 
 export const GlobalStyle = createGlobalStyle`
-  body p {
-    font-family: 'Vollkorn', serif;
+  html, body, #__next {
+    height: 100%;
   }
 `;
